@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "361878270785",
+    "firebase_url": "https://curumim-mds-ufscar.firebaseio.com",
+    "project_id": "curumim-mds-ufscar",
+    "storage_bucket": "curumim-mds-ufscar.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:361878270785:android:d049f3ab049aed77",
+        "android_client_info": {
+          "package_name": "br.ufscar.dc.mds.curumim"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "361878270785-jbd4ipu94g41opia7kn2hjr61ua0o1s7.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "br.ufscar.dc.mds.curumim",
+            "certificate_hash": "d49f83fd499b44ce69d549de983f49b6f37175ac"
+          }
+        },
+        {
+          "client_id": "361878270785-6q769ulbbbgbda2plnt4gsmr843h1fgr.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCqEoXZ8MPZnAx-LKr9KtGrbQx9H9fkQzw"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "361878270785-6q769ulbbbgbda2plnt4gsmr843h1fgr.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
