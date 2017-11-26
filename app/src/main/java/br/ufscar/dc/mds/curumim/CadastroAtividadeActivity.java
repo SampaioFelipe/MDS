@@ -12,6 +12,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TimePicker;
+import android.widget.Toast;
 
 import com.google.android.gms.common.api.Status;
 import com.google.android.gms.location.places.Place;
@@ -70,12 +71,20 @@ public class CadastroAtividadeActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 nome = editTextNomeAtividade.getText().toString();
-                String novaAtividade = nome + "@@sep@@" + local + "@@sep@@" +
-                        String.format(Locale.US, "%02d", hora) + ":" + String.format(Locale.US, "%02d", minuto);
-                Intent intent = new Intent();
-                intent.putExtra("atividade", novaAtividade);
-                setResult(Activity.RESULT_OK, intent);
-                CadastroAtividadeActivity.this.finish();
+
+                if (local == null)
+                {
+                    Toast.makeText(CadastroAtividadeActivity.this, "Selecione um local", Toast.LENGTH_SHORT).show();
+                } else if (nome.isEmpty()) {
+                    Toast.makeText(CadastroAtividadeActivity.this, "Digite um nome para a atividade", Toast.LENGTH_SHORT).show();
+                } else {
+                    String novaAtividade = nome + "@@sep@@" + local + "@@sep@@" +
+                            String.format(Locale.US, "%02d", hora) + ":" + String.format(Locale.US, "%02d", minuto);
+                    Intent intent = new Intent();
+                    intent.putExtra("atividade", novaAtividade);
+                    setResult(Activity.RESULT_OK, intent);
+                    CadastroAtividadeActivity.this.finish();
+                }
             }
         });
 
