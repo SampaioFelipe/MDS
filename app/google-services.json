@@ -15,6 +15,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "361878270785-u76u69jh4oiopfl93r2uo8s8p251jg64.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "br.ufscar.dc.mds.curumim",
+            "certificate_hash": "4c63d302128843551e0ec130777d6419b4ca42b3"
+          }
+        },
+        {
           "client_id": "361878270785-jbd4ipu94g41opia7kn2hjr61ua0o1s7.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {

@@ -1,9 +1,11 @@
 package br.ufscar.dc.mds.curumim;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
 import com.firebase.ui.auth.AuthUI;
+import com.google.firebase.FirebaseApp;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
@@ -34,7 +36,7 @@ public class MainActivity extends AppCompatActivity {
             DatabaseReference myRef = database.getReference("message");
 
             myRef.setValue("Hello, World!");
-
+            startActivity(new Intent(MainActivity.this, CalendarioActivity.class));
         } else {
             startActivityForResult(
                     // Get an instance of AuthUI based on the default app
@@ -42,6 +44,5 @@ public class MainActivity extends AppCompatActivity {
                             Arrays.asList(new AuthUI.IdpConfig.Builder(AuthUI.GOOGLE_PROVIDER).build())).build(),
                     123);
         }
-
     }
 }

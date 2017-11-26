@@ -1,13 +1,13 @@
 package br.ufscar.dc.mds.curumim;
 
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.CalendarView;
-import android.widget.LinearLayout;
-import android.widget.TextView;
+import android.widget.ListView;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -20,6 +20,7 @@ import com.google.firebase.database.ValueEventListener;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Date;
 import java.util.Locale;
 import java.util.Objects;
@@ -27,15 +28,11 @@ import java.util.Objects;
 public class CalendarioActivity extends AppCompatActivity {
 
     private CalendarView viewCalendario;
-    private LinearLayout viewListaAtividades;
-    private LinearLayout.LayoutParams textViewParams;
-
-    private DatabaseReference databaseRef;
 
     private SimpleDateFormat dateFormat;
-    private SimpleDateFormat hourFormat;
     private Date diaSelecionado;
 
+    private DatabaseReference databaseRef;
     private ArrayList<Atividade> listaAtividadesDia;
 
     int i;
@@ -46,15 +43,11 @@ public class CalendarioActivity extends AppCompatActivity {
         setContentView(R.layout.activity_calendario);
 
         viewCalendario = findViewById(R.id.calendarView);
-        FloatingActionButton botaoAdicionarAtividade = findViewById(R.id.botaoAdicionarAtividadeCalendario);
-        viewListaAtividades = findViewById(R.id.scrollViewAtividades);
-        textViewParams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,
-                LinearLayout.LayoutParams.WRAP_CONTENT);
+        final FloatingActionButton botaoAdicionarAtividade = findViewById(R.id.botaoAdicionarAtividadeCalendario);
 
-        databaseRef = FirebaseDatabase.getInstance().getReference("atividades/" + FirebaseAuth.getInstance().getUid());
+        databaseRef = FirebaseDatabase.getInstance().getReference("users/" + FirebaseAuth.getInstance().getUid() + "/atividades");
 
-        dateFormat = new SimpleDateFormat("dd/MM/yy", Locale.US);
-        hourFormat = new SimpleDateFormat("HH:mm", Locale.US);
+        dateFormat = new SimpleDateFormat("dd/MM/yyyy", Locale.US);
 
         viewCalendario.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
             @Override
@@ -64,6 +57,7 @@ public class CalendarioActivity extends AppCompatActivity {
                 } catch (ParseException e) {
                     diaSelecionado = new Date(viewCalendario.getDate());
                 }
+                botaoAdicionarAtividade.setVisibility(View.VISIBLE);
                 showDayActivities();
             }
         });
@@ -72,8 +66,8 @@ public class CalendarioActivity extends AppCompatActivity {
         botaoAdicionarAtividade.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                listaAtividadesDia.add(new Atividade("Novo item " + i++, "Aqui", diaSelecionado));
-                databaseRef.setValue(listaAtividadesDia);
+                Intent intentAdicionaAtividade = new Intent(CalendarioActivity.this, CadastroAtividadeActivity.class);
+                startActivityForResult(intentAdicionaAtividade, 0);
                 showDayActivities();
             }
         });
@@ -81,7 +75,8 @@ public class CalendarioActivity extends AppCompatActivity {
         databaseRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                GenericTypeIndicator<ArrayList<Atividade>> t = new GenericTypeIndicator<ArrayList<Atividade>>() {};
+                GenericTypeIndicator<ArrayList<Atividade>> t = new GenericTypeIndicator<ArrayList<Atividade>>() {
+                };
 
                 listaAtividadesDia = dataSnapshot.getValue(t);
                 showDayActivities();
@@ -96,30 +91,35 @@ public class CalendarioActivity extends AppCompatActivity {
         diaSelecionado = new Date(viewCalendario.getDate());
     }
 
-    private void showDayActivities() {
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
 
-        viewListaAtividades.removeAllViews();
+        if (requestCode == 0) {
+            if (resultCode == RESULT_OK && listaAtividadesDia != null) {
 
-        for (Atividade a: listaAtividadesDia) {
-            if (Objects.equals(dateFormat.format(a.horario), dateFormat.format(diaSelecionado))) {
-                String textoAtividade = a.nome + "\n" + a.local + "\n" +
-                        dateFormat.format(a.horario) + "\n" +
-                        hourFormat.format(a.horario);
-
-                TextView atividade = new TextView(this);
-                atividade.setTextSize((float) 24.5);
-                atividade.setText(textoAtividade);
-                atividade.setLayoutParams(textViewParams);
-
-                View hline = new View(this);
-                LinearLayout.LayoutParams hlineViewParams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,
-                        getResources().getDimensionPixelSize(R.dimen.hline_height));
-                hline.setLayoutParams(hlineViewParams);
-                hline.setBackgroundColor(getResources().getColor(R.color.colorPrimaryDark));
-
-                viewListaAtividades.addView(atividade);
-                viewListaAtividades.addView(hline);
+                String novaAtividadeCodificada = data.getStringExtra("atividade");
+                Atividade novaAtividade = new Atividade(dateFormat.format(diaSelecionado), novaAtividadeCodificada);
+                listaAtividadesDia.add(novaAtividade);
+                databaseRef.setValue(listaAtividadesDia);
+                showDayActivities();
             }
         }
+    }
+
+    private void showDayActivities() {
+        ArrayList<Atividade> listaAtividadesDiaSelecionado = new ArrayList<>();
+
+        if (listaAtividadesDia != null) {
+            Collections.sort(listaAtividadesDia);
+            for (Atividade a : listaAtividadesDia) {
+                if (Objects.equals(dateFormat.format(a.horario), dateFormat.format(diaSelecionado))) {
+                    listaAtividadesDiaSelecionado.add(a);
+                }
+            }
+        }
+
+        ListView lista = findViewById(R.id.listaAtividades);
+        lista.setAdapter(new AtividadeAdapter(listaAtividadesDiaSelecionado, CalendarioActivity.this));
     }
 }
