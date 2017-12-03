@@ -11,6 +11,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.TextClock;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
@@ -36,6 +37,7 @@ public class CadastroAtividadeActivity extends AppCompatActivity {
         ImageButton botaoConcluido = findViewById(R.id.botaoConcluidoCadastroAtividade);
         final EditText editTextNomeAtividade = findViewById(R.id.editTextNomeAtividade);
         final PlaceAutocompleteFragment fragmentLocal = (PlaceAutocompleteFragment) getFragmentManager().findFragmentById(R.id.editTextLocalAtividade);
+        final TextClock textClock = findViewById(R.id.textClockHorarioAtividade);
         Toolbar toolbar = findViewById(R.id.toolbarCadastroAtividade);
 
         botaoImagemHorarioAtividade.setOnClickListener(new View.OnClickListener() {
@@ -47,6 +49,7 @@ public class CadastroAtividadeActivity extends AppCompatActivity {
                     public void onTimeSet(TimePicker timePicker, int i, int i1) {
                         hora = i;
                         minuto = i1;
+                        textClock.setText(hora + ":" + minuto);
                     }
                 },
                         calendario.get(Calendar.HOUR_OF_DAY), calendario.get(Calendar.MINUTE), true);

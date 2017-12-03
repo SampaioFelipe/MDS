@@ -35,8 +35,6 @@ public class CalendarioActivity extends AppCompatActivity {
     private DatabaseReference databaseRef;
     private ArrayList<Atividade> listaAtividadesDia;
 
-    int i;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -62,7 +60,6 @@ public class CalendarioActivity extends AppCompatActivity {
             }
         });
 
-        i = 0;
         botaoAdicionarAtividade.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -96,7 +93,11 @@ public class CalendarioActivity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
 
         if (requestCode == 0) {
-            if (resultCode == RESULT_OK && listaAtividadesDia != null) {
+            if (resultCode == RESULT_OK) {
+                if (listaAtividadesDia == null)
+                {
+                    listaAtividadesDia = new ArrayList<>();
+                }
 
                 String novaAtividadeCodificada = data.getStringExtra("atividade");
                 Atividade novaAtividade = new Atividade(dateFormat.format(diaSelecionado), novaAtividadeCodificada);

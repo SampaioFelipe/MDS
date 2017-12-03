@@ -2,4 +2,6 @@
 <resources>
     <dimen name="calendar_activity_list_margin">8dp</dimen>
     <dimen name="hline_height">1.5dp</dimen>
+    <dimen name="tamanhoBotaoCadastroAtividade">50dp</dimen>
+    <dimen name="metadeBotaoCadastroAtividade">15dp</dimen>
 </resources>
