@@ -1,19 +1,11 @@
-package br.ufscar.dc.mds.curumim;
+package br.ufscar.dc.mds.curumim.activities;
 
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.graphics.BitmapShader;
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.graphics.RectF;
-import android.graphics.Shader;
 import android.os.AsyncTask;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Base64;
-import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -23,10 +15,10 @@ import android.widget.TextView;
 import com.firebase.ui.auth.AuthUI;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
-import com.google.firebase.database.DatabaseReference;
 
 import java.util.HashMap;
 
+import br.ufscar.dc.mds.curumim.R;
 import br.ufscar.dc.mds.curumim.utils.Authentication;
 import br.ufscar.dc.mds.curumim.utils.DatabaseHandler;
 import br.ufscar.dc.mds.curumim.utils.NetworkHandler;

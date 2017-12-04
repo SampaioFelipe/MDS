@@ -1,4 +1,4 @@
-package br.ufscar.dc.mds.curumim;
+package br.ufscar.dc.mds.curumim.activities;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -16,6 +16,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.Arrays;
+
+import br.ufscar.dc.mds.curumim.R;
 import br.ufscar.dc.mds.curumim.utils.Authentication;
 import br.ufscar.dc.mds.curumim.utils.DatabaseHandler;
 

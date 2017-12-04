@@ -24,7 +24,7 @@
         <item name="android:paddingLeft">@dimen/input_label_horizontal_spacing</item>
         <item name="android:paddingRight">@dimen/input_label_horizontal_spacing</item>
     </style>
-    
+
     <style name="FormItem">
         <item name="android:layout_marginTop">10dp</item>
     </style>
@@ -34,5 +34,9 @@
         <item name="android:windowBackground">@drawable/splashscreen_bg</item>
         <item name="android:windowTranslucentStatus" tools:targetApi="kitkat">true</item>
     </style>
+
+    <style name="AppTheme.NoActionBar.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="AppTheme.NoActionBar.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
 </resources>

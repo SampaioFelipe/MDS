@@ -6,7 +6,7 @@
     android:fitsSystemWindows="true"
     android:gravity="center"
     android:orientation="vertical"
-    tools:context="br.ufscar.dc.mds.curumim.SignUpActivity">
+    tools:context="br.ufscar.dc.mds.curumim.activities.SignUpActivity">
 
     <ImageView
         android:id="@+id/user_image_signup"

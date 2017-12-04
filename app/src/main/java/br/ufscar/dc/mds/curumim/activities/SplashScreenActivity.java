@@ -1,4 +1,4 @@
-package br.ufscar.dc.mds.curumim;
+package br.ufscar.dc.mds.curumim.activities;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;

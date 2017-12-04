@@ -1,12 +1,12 @@
-package br.ufscar.dc.mds.curumim;
+package br.ufscar.dc.mds.curumim.activities;
 
-import android.app.Fragment;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.util.Base64;
 import android.util.Log;
 import android.view.View;
@@ -29,13 +29,21 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.ValueEventListener;
 
-import java.util.HashMap;
-
+import br.ufscar.dc.mds.curumim.R;
+import br.ufscar.dc.mds.curumim.activities.homeFragments.CalendarioFragment;
+import br.ufscar.dc.mds.curumim.activities.homeFragments.CriancaFragment;
+import br.ufscar.dc.mds.curumim.activities.homeFragments.InitialFragment;
+import br.ufscar.dc.mds.curumim.activities.homeFragments.RegistroFragment;
 import br.ufscar.dc.mds.curumim.utils.Authentication;
 import br.ufscar.dc.mds.curumim.utils.DatabaseHandler;
 
 public class HomeActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener {
+        implements NavigationView.OnNavigationItemSelectedListener,
+        InitialFragment.OnFragmentInteractionListener,
+        CalendarioFragment.OnFragmentInteractionListener,
+        CriancaFragment.OnListFragmentInteractionListener,
+        RegistroFragment.OnFragmentInteractionListener {
+
     ImageView userPhoto;
 
     @Override
@@ -43,23 +51,23 @@ public class HomeActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        DrawerLayout drawer = findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
         toggle.syncState();
 
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
         View header = navigationView.getHeaderView(0);
 
-        userPhoto = (ImageView) header.findViewById(R.id.image_user_drawer);
+        userPhoto = header.findViewById(R.id.image_user_drawer);
 
-        if(Authentication.getBitmap() == null) {
+        if (Authentication.getBitmap() == null) {
             getUserPhoto();
         } else {
             userPhoto.setImageBitmap(Authentication.getBitmap());
@@ -76,24 +84,31 @@ public class HomeActivity extends AppCompatActivity
                 (new BottomNavigationView.OnNavigationItemSelectedListener() {
                     @Override
                     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-//                        Fragment selectedFragment = null;
-//                        switch (item.getItemId()) {
-//                            case R.id.action_item1:
-//                                selectedFragment = ItemOneFragment.newInstance();
-//                                break;
-//                            case R.id.action_item2:
-//                                selectedFragment = ItemTwoFragment.newInstance();
-//                                break;
-//                            case R.id.action_item3:
-//                                selectedFragment = ItemThreeFragment.newInstance();
-//                                break;
-//                        }
-//                        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-//                        transaction.replace(R.id.frame_layout, selectedFragment);
-//                        transaction.commit();
+                        Fragment selectedFragment = null;
+                        switch (item.getItemId()) {
+                            case R.id.action_item1:
+                                selectedFragment = InitialFragment.newInstance();
+                                break;
+                            case R.id.action_item2:
+                                selectedFragment = CalendarioFragment.newInstance();
+                                break;
+                            case R.id.action_item3:
+                                selectedFragment = CriancaFragment.newInstance();
+                                break;
+                            case R.id.action_item4:
+                                selectedFragment = RegistroFragment.newInstance();
+                                break;
+                        }
+                        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+                        transaction.replace(R.id.frame_layout, selectedFragment);
+                        transaction.commit();
                         return true;
                     }
                 });
+
+        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+        transaction.replace(R.id.frame_layout, InitialFragment.newInstance());
+        transaction.commit();
     }
 
     @Override
@@ -102,8 +117,7 @@ public class HomeActivity extends AppCompatActivity
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
-//            super.onBackPressed();
-
+            super.onBackPressed();
         }
     }
 
@@ -117,7 +131,7 @@ public class HomeActivity extends AppCompatActivity
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
+        // automatically handle clicks on the InitialFragment/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
@@ -135,10 +149,8 @@ public class HomeActivity extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_camera) {
-            // Handle the camera action
-        } else if (id == R.id.nav_gallery) {
-
+        if (id == R.id.nav_profile) {
+            startActivity(new Intent(HomeActivity.this, ProfileActivity.class));
         } else if (id == R.id.nav_logout) {
             logout();
         }
@@ -182,5 +194,15 @@ public class HomeActivity extends AppCompatActivity
 
             }
         });
+    }
+
+    @Override
+    public void onFragmentInteraction(Uri uri) {
+
+    }
+
+    @Override
+    public void onListFragmentInteraction() {
+
     }
 }
