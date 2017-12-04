@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/action_item1"
+        android:icon="@drawable/ic_home"
+        android:title="@string/menu_home"/>
+    <item
+        android:id="@+id/action_item2"
+        android:icon="@drawable/ic_calendar"
+        android:title="@string/menu_calendario"/>
+    <item
+        android:id="@+id/action_item3"
+        android:icon="@drawable/ic_people"
+        android:title="@string/menu_criancas"/>
+
+    <item
+        android:id="@+id/action_item4"
+        android:icon="@drawable/ic_registro"
+        android:title="@string/menu_registro"/>
+</menu>

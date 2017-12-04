@@ -1,6 +1,7 @@
 package br.ufscar.dc.mds.curumim.utils;
 
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 public class DatabaseHandler {
@@ -11,14 +12,16 @@ public class DatabaseHandler {
         database.setPersistenceEnabled(true);
     }
 
-    static public FirebaseDatabase getDatabase(){
+    static public FirebaseDatabase getDatabase() {
         return database;
     }
 
-    static public boolean record(FirebaseUser user, Object obj) {
-
-        return true;
+    static public DatabaseReference getUserReference() {
+        return database.getReference("/users/" + Authentication.getUserUID() + "/");
     }
+
+
+
 
 //    static public boolean getUserData(FirebaseUser user, String path) {
 //

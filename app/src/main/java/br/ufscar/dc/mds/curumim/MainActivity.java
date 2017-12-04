@@ -16,7 +16,6 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.Arrays;
-
 import br.ufscar.dc.mds.curumim.utils.Authentication;
 import br.ufscar.dc.mds.curumim.utils.DatabaseHandler;
 
@@ -27,13 +26,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Authentication.setInstante();
-        DatabaseHandler.setInstance();
-
         if (Authentication.isLogged()) {
-            startActivity(new Intent(MainActivity.this, SignUpActivity.class));
-
-//            startActivity(new Intent(MainActivity.this, HomeActivity.class));
+            startActivity(new Intent(MainActivity.this, HomeActivity.class));
             finish();
         } else {
             Button sign_button = (Button) findViewById(R.id.sign_in_button);
@@ -60,8 +54,6 @@ public class MainActivity extends AppCompatActivity {
 
             // Successfully signed in
             if (resultCode == RESULT_OK) {
-                Log.d("teste", Authentication.getUser().toString());
-
                 getUserData();
             } else {
                 // Sign in failed
@@ -87,13 +79,13 @@ public class MainActivity extends AppCompatActivity {
         ref.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
+
                 if (dataSnapshot.getValue() == null) {
                     startActivity(new Intent(MainActivity.this, SignUpActivity.class));
                 } else {
                     startActivity(new Intent(MainActivity.this, HomeActivity.class));
+                    finish();
                 }
-
-                finish();
             }
 
             @Override

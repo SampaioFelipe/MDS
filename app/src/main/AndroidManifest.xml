@@ -16,13 +16,24 @@
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/google_maps_key" />
 
+        <!-- Splash Screen -->
+        <activity
+            android:name="br.ufscar.dc.mds.curumim.SplashScreenActivity"
+            android:theme="@style/SplashTheme">
+
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+
+        </activity>
+
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <activity
             android:name=".HomeActivity"
             android:label="@string/title_activity_home"
@@ -32,7 +43,7 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="br.ufscar.dc.mds.curumim.MainActivity" />
         </activity>
-        <activity android:name=".SignUpActivity"></activity>
+        <activity android:name=".SignUpActivity" />
     </application>
 
 </manifest>

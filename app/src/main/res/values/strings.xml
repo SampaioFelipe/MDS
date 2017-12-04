@@ -9,22 +9,9 @@
 
     <string name="button_sign_in">Sign in</string>
 
-    <string-array name="sexo_array">
-        <item></item>
-        <item>Maculino</item>
-        <item>Feminino</item>
-        <item>Outro</item>
-    </string-array>
-
-    <string-array name="tipo_sangue_array">
-        <item> </item>
-        <item>A+</item>
-        <item>A-</item>
-        <item>B+</item>
-        <item>B-</item>
-        <item>AB+</item>
-        <item>AB-</item>
-        <item>O+</item>
-        <item>O-</item>
-    </string-array>
+    <!-- Bottom menu -->
+    <string name="menu_home">Home</string>
+    <string name="menu_calendario">Calendário</string>
+    <string name="menu_criancas">Minhas Crianças</string>
+    <string name="menu_registro">Registro</string> <!-- TODO: modificar nomeclatura, não está intuitiva -->
 </resources>
