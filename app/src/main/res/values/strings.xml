@@ -1,6 +1,28 @@
 <resources>
     <string name="app_name">Curumim</string>
 
+    <string name="title_activity_home">Home</string>
+    <string name="title_activity_profile">Minhas Informações</string>
+
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="action_settings">Settings</string>
+
+    <string name="button_sign_in">Sign in</string>
+
+    <!-- Bottom menu -->
+    <string name="menu_home">Home</string>
+    <string name="menu_calendario">Calendário</string>
+    <string name="menu_criancas">Minhas Crianças</string>
+    <string name="menu_registro">Registro</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_activity_tutorial">TutorialActivity</string>
+    <string name="section_format">Hello World from section: %1$d</string> <!-- TODO: modificar nomeclatura, não está intuitiva -->
+
     <string name="google_maps_key" templateMergeStrategy="preserve" translatable="false">
         AIzaSyChJy20g-gw9syTXjiTUtf7JRS66hHbqWg
     </string>

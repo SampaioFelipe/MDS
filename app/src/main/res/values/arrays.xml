@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string-array name="sexo_array">
+        <item>Selecionar</item>
+        <item>Maculino</item>
+        <item>Feminino</item>
+        <item>Outro</item>
+    </string-array>
+
+    <string-array name="tipo_sangue_array">
+        <item>Selecionar</item>
+        <item>A+</item>
+        <item>A-</item>
+        <item>B+</item>
+        <item>B-</item>
+        <item>AB+</item>
+        <item>AB-</item>
+        <item>O+</item>
+        <item>O-</item>
+    </string-array>
+
+</resources>
