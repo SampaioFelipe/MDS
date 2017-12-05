@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_marginBottom="@dimen/calendar_activity_list_margin"
-    tools:context="br.ufscar.dc.mds.curumim.CadastroAtividadeActivity">
+    tools:context="br.ufscar.dc.mds.curumim.activities.CadastroAtividadeActivity">
 
     <android.support.v7.widget.Toolbar
         android:id="@+id/toolbarCadastroAtividade"
