@@ -41,6 +41,6 @@
         android:clickable="true"
         android:focusable="true"
         android:src="@android:drawable/ic_menu_add"
-        app:layout_behavior="br.ufscar.dc.mds.curumim.utils.FadeFloatingButtonBehavior" />
+        app:layout_behavior="br.ufscar.dc.mds.curumim.FadeFloatingButtonBehavior" />
 
 </android.support.design.widget.CoordinatorLayout>
