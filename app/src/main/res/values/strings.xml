@@ -18,6 +18,13 @@
     <string name="menu_criancas">Minhas Crianças</string>
     <string name="menu_registro">Registro</string>
 
+    <!-- Mensagens de erro -->
+    <string name="network_error">Não há conexão com a internet</string>
+    <string name="unknown_erro">Ocorreu algum erro, tente novamente</string>
+
+    <!-- Outras mensagens -->
+    <string name="loading_text">carregando</string>
+
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="title_activity_tutorial">TutorialActivity</string>

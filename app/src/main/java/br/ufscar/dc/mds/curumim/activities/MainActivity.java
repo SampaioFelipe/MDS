@@ -1,11 +1,14 @@
 package br.ufscar.dc.mds.curumim.activities;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+
 
 import com.firebase.ui.auth.AuthUI;
 import com.firebase.ui.auth.ErrorCodes;
@@ -23,10 +26,21 @@ import br.ufscar.dc.mds.curumim.utils.DatabaseHandler;
 
 public class MainActivity extends AppCompatActivity {
 
+    ProgressDialog progressDialog;
+    Snackbar snackbarMsg;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        // Snackbar de erro
+        snackbarMsg =  Snackbar.make(findViewById(R.id.main_screen), R.string.network_error,
+                Snackbar.LENGTH_INDEFINITE);
+
+        snackbarMsg.getView().setBackgroundColor(getResources().getColor(R.color.colorPrimaryDark));
+
+        progressDialog = new ProgressDialog(MainActivity.this);
 
         if (Authentication.isLogged()) {
             startActivity(new Intent(MainActivity.this, HomeActivity.class));
@@ -37,6 +51,11 @@ public class MainActivity extends AppCompatActivity {
             sign_button.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
+
+                    progressDialog.setMessage(getResources().getString(R.string.loading_text));
+                    progressDialog.setCancelable(false);
+                    progressDialog.show();
+
                     startActivityForResult(
                             // Get an instance of AuthUI based on the default app
                             AuthUI.getInstance().createSignInIntentBuilder().setAvailableProviders(
@@ -50,6 +69,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
+        progressDialog.dismiss();
         // RC_SIGN_IN is the request code you passed into startActivityForResult(...) when starting the sign in flow.
         if (requestCode == Authentication.RC_SIGN_IN) {
             IdpResponse response = IdpResponse.fromResultIntent(data);
@@ -59,17 +79,14 @@ public class MainActivity extends AppCompatActivity {
                 getUserData();
             } else {
                 // Sign in failed
-                if (response == null) {
-                    // User pressed back button
-                    Log.d("teste", "back");
-                }
-
-                if (response.getErrorCode() == ErrorCodes.NO_NETWORK) {
-                    Log.d("teste", "erro de rede");
-                }
-
-                if (response.getErrorCode() == ErrorCodes.UNKNOWN_ERROR) {
-                    Log.d("teste", "erro desconhecido");
+                if (response != null) {
+                    if (response.getErrorCode() == ErrorCodes.NO_NETWORK) {
+                        snackbarMsg.setText(getResources().getString(R.string.network_error));
+                        snackbarMsg.show();
+                    }
+                } else {
+                    snackbarMsg.setText(getResources().getString(R.string.unknown_erro));
+                    snackbarMsg.show();
                 }
             }
         }
