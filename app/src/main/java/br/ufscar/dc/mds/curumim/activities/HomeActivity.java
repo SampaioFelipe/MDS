@@ -205,4 +205,12 @@ public class HomeActivity extends AppCompatActivity
     public void onListFragmentInteraction() {
 
     }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data)
+    {
+
+        super.onActivityResult(requestCode,resultCode,data);
+
+    }
 }
