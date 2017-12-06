@@ -30,9 +30,6 @@
     <string name="title_activity_tutorial">TutorialActivity</string>
     <string name="section_format">Hello World from section: %1$d</string> <!-- TODO: modificar nomeclatura, não está intuitiva -->
 
-    <string name="google_maps_key" templateMergeStrategy="preserve" translatable="false">
-        AIzaSyChJy20g-gw9syTXjiTUtf7JRS66hHbqWg
-    </string>
     <string name="selecione_horario_atividade">Selecione um horário</string>
     <string name="nome_da_atividade_hint">Nome da atividade</string>
 </resources>

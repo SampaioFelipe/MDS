@@ -8,8 +8,11 @@ public class DatabaseHandler {
     static private FirebaseDatabase database;
 
     static public void setInstance() {
-        database = FirebaseDatabase.getInstance();
-        database.setPersistenceEnabled(true);
+        if (database == null) {
+            database = FirebaseDatabase.getInstance();
+            database.setPersistenceEnabled(true);
+        }
+
     }
 
     static public FirebaseDatabase getDatabase() {
@@ -19,8 +22,6 @@ public class DatabaseHandler {
     static public DatabaseReference getUserReference() {
         return database.getReference("/users/" + Authentication.getUserUID() + "/");
     }
-
-
 
 
 //    static public boolean getUserData(FirebaseUser user, String path) {

@@ -12,11 +12,6 @@
         android:layout_height="match_parent"
         android:layout_marginBottom="@dimen/calendar_activity_list_margin">
 
-        <include
-            layout="@layout/app_bar_home"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
-
         <android.support.v7.widget.Toolbar
             android:id="@+id/toolbarCadastroAtividade"
             android:layout_width="match_parent"
@@ -36,6 +31,7 @@
                 android:layout_marginEnd="@dimen/calendar_activity_list_margin"
                 android:adjustViewBounds="false"
                 android:background="@drawable/fui_done_check_mark"
+                android:backgroundTint="@color/colorPrimaryDark"
                 android:baselineAlignBottom="false"
                 android:clickable="true"
                 android:cropToPadding="false"

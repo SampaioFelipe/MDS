@@ -6,4 +6,14 @@
 
     <color name="splashScreen">#00a0a3</color>
     <color name="tituloAtividade">#FFFFFF</color>
+
+    <!--Cardviews-->
+    <color name="header_tarefa_hoje">@color/colorPrimaryDark</color>
+    <color name="body_tarefa_hoje">@color/colorPrimary</color>
+
+    <color name="header_dica">@color/colorPrimaryDark</color>
+    <color name="body_dica">@color/colorPrimary</color>
+
+
+
 </resources>
