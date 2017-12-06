@@ -3,10 +3,10 @@
 
     <item
         android:drawable="@color/splashScreen"/>
-    <!--<item>-->
-        <!--<bitmap-->
-            <!--android:gravity="center"-->
-            <!--android:src="@drawable/ic_logo"-->
-            <!--android:mipMap="true"/>-->
-    <!--</item>-->
+    <item>
+        <bitmap
+            android:gravity="center"
+            android:src="@mipmap/logo_curumin_branco"
+            android:mipMap="true" />
+    </item>
 </layer-list>
