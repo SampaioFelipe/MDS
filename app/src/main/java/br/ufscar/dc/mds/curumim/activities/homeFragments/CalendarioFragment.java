@@ -92,7 +92,8 @@ public class CalendarioFragment extends Fragment {
         databaseRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                GenericTypeIndicator<ArrayList<Atividade>> t = new GenericTypeIndicator<ArrayList<Atividade>>(){};
+                GenericTypeIndicator<ArrayList<Atividade>> t = new GenericTypeIndicator<ArrayList<Atividade>>() {
+                };
 
                 listaAtividadesDia = dataSnapshot.getValue(t);
                 showDayActivities();
@@ -122,8 +123,7 @@ public class CalendarioFragment extends Fragment {
 
         if (requestCode == 0) {
             if (resultCode == RESULT_OK) {
-                if (listaAtividadesDia == null)
-                {
+                if (listaAtividadesDia == null) {
                     listaAtividadesDia = new ArrayList<>();
                 }
 
@@ -175,7 +175,11 @@ public class CalendarioFragment extends Fragment {
             }
         }
 
-        ListView lista = getView().findViewById(R.id.listaAtividades);
-        lista.setAdapter(new AtividadeAdapter(listaAtividadesDiaSelecionado, getActivity()));
+        View view = getView();
+
+        if (view != null) {
+            ListView lista = view.findViewById(R.id.listaAtividades);
+            lista.setAdapter(new AtividadeAdapter(listaAtividadesDiaSelecionado, getActivity()));
+        }
     }
 }

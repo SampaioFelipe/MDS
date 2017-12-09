@@ -34,6 +34,9 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+//        startActivity(new Intent(MainActivity.this, TutorialActivity.class));
+//        finish();
+
         // Snackbar de erro
         snackbarMsg =  Snackbar.make(findViewById(R.id.main_screen), R.string.network_error,
                 Snackbar.LENGTH_INDEFINITE);
@@ -43,10 +46,11 @@ public class MainActivity extends AppCompatActivity {
         progressDialog = new ProgressDialog(MainActivity.this);
 
         if (Authentication.isLogged()) {
-            startActivity(new Intent(MainActivity.this, HomeActivity.class));
-            finish();
+//            startActivity(new Intent(MainActivity.this, HomeActivity.class));
+//            finish();
+            getUserData();
         } else {
-            Button sign_button = (Button) findViewById(R.id.sign_in_button);
+            Button sign_button = findViewById(R.id.sign_in_button);
 
             sign_button.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -109,7 +113,6 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onCancelled(DatabaseError databaseError) {
-                Log.d("teste", "loadPost:onCancelled", databaseError.toException());
 
             }
         });

@@ -53,8 +53,7 @@ public class CadastroAtividadeActivity extends AppCompatActivity {
                         minuto = i1;
                         textClock.setText(String.format(Locale.US, "%d:%d", hora, minuto));
                     }
-                },
-                        calendario.get(Calendar.HOUR_OF_DAY), calendario.get(Calendar.MINUTE), true);
+                }, calendario.get(Calendar.HOUR_OF_DAY), calendario.get(Calendar.MINUTE), true);
 
                 timePickerDialog.show();
             }
@@ -77,8 +76,7 @@ public class CadastroAtividadeActivity extends AppCompatActivity {
             public void onClick(View view) {
                 nome = editTextNomeAtividade.getText().toString();
 
-                if (local == null)
-                {
+                if (local == null) {
                     Toast.makeText(CadastroAtividadeActivity.this, "Selecione um local", Toast.LENGTH_SHORT).show();
                 } else if (nome.isEmpty()) {
                     Toast.makeText(CadastroAtividadeActivity.this, "Digite um nome para a atividade", Toast.LENGTH_SHORT).show();
