@@ -2,8 +2,6 @@ package br.ufscar.dc.mds.curumim;
 
 import org.junit.Test;
 
-import br.ufscar.dc.mds.curumim.utils.TipOfTheDay;
-
 import static org.junit.Assert.*;
 
 /**
