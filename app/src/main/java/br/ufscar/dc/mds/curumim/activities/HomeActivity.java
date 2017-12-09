@@ -34,6 +34,7 @@ import br.ufscar.dc.mds.curumim.activities.homeFragments.CalendarioFragment;
 import br.ufscar.dc.mds.curumim.activities.homeFragments.CriancaFragment;
 import br.ufscar.dc.mds.curumim.activities.homeFragments.InitialFragment;
 import br.ufscar.dc.mds.curumim.activities.homeFragments.RegistroFragment;
+import br.ufscar.dc.mds.curumim.utils.TipOfTheDay;
 import br.ufscar.dc.mds.curumim.utils.Authentication;
 import br.ufscar.dc.mds.curumim.utils.DatabaseHandler;
 
@@ -45,6 +46,7 @@ public class HomeActivity extends AppCompatActivity
         RegistroFragment.OnFragmentInteractionListener {
 
     ImageView userPhoto;
+    TextView tipOfTheDay;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,6 +68,7 @@ public class HomeActivity extends AppCompatActivity
         View header = navigationView.getHeaderView(0);
 
         userPhoto = header.findViewById(R.id.image_user_drawer);
+        tipOfTheDay = header.findViewById(R.id.type_of_the_day_text);
 
         if (Authentication.getBitmap() == null) {
             getUserPhoto();
@@ -76,6 +79,8 @@ public class HomeActivity extends AppCompatActivity
         ((TextView) header.findViewById(R.id.user_name_drawer)).setText(Authentication.getUser().getDisplayName());
 
         ((TextView) header.findViewById(R.id.user_email_drawer)).setText(Authentication.getUser().getEmail());
+
+        tipOfTheDay.setText(TipOfTheDay.getTipOfTheDay());
 
         BottomNavigationView bottomNavigationView = (BottomNavigationView)
                 findViewById(R.id.navigation);
