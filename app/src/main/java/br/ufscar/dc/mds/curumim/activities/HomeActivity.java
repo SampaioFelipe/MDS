@@ -46,7 +46,6 @@ public class HomeActivity extends AppCompatActivity
         RegistroFragment.OnFragmentInteractionListener {
 
     ImageView userPhoto;
-    TextView tipOfTheDay;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,7 +67,6 @@ public class HomeActivity extends AppCompatActivity
         View header = navigationView.getHeaderView(0);
 
         userPhoto = header.findViewById(R.id.image_user_drawer);
-        tipOfTheDay = header.findViewById(R.id.type_of_the_day_text);
 
         if (Authentication.getBitmap() == null) {
             getUserPhoto();
@@ -79,8 +77,6 @@ public class HomeActivity extends AppCompatActivity
         ((TextView) header.findViewById(R.id.user_name_drawer)).setText(Authentication.getUser().getDisplayName());
 
         ((TextView) header.findViewById(R.id.user_email_drawer)).setText(Authentication.getUser().getEmail());
-
-        tipOfTheDay.setText(TipOfTheDay.getTipOfTheDay());
 
         BottomNavigationView bottomNavigationView = (BottomNavigationView)
                 findViewById(R.id.navigation);
