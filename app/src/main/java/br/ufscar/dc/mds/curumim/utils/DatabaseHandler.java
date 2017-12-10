@@ -22,18 +22,4 @@ public class DatabaseHandler {
     static public DatabaseReference getUserReference() {
         return database.getReference("/users/" + Authentication.getUserUID() + "/");
     }
-
-
-//    static public boolean getUserData(FirebaseUser user, String path) {
-//
-//
-//        return true;
-//    }
-
 }
-
-//    // Write a message to the database
-//    DatabaseReference myRef = database.getReference("message");
-//
-////            myRef.setValue("Hello, World!");
-//

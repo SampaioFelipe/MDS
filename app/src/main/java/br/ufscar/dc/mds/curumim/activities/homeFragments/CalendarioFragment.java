@@ -87,7 +87,7 @@ public class CalendarioFragment extends Fragment {
         });
 
         databaseRef = FirebaseDatabase.getInstance().getReference("users/" + FirebaseAuth.getInstance().getUid() + "/atividades");
-        dateFormat = new SimpleDateFormat("dd/MM/yyyy", Locale.US);
+        dateFormat = new SimpleDateFormat("dd/MM/yyyy", new Locale("pt", "BR"));
 
         databaseRef.addValueEventListener(new ValueEventListener() {
             @Override

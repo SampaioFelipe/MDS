@@ -47,7 +47,6 @@ public class AtividadeAdapter extends ArrayAdapter<Atividade> {
             viewHolder = (ViewHolder) convertView.getTag();
         }
 
-
         viewHolder.txtNome.setText(atividade.nome);
         viewHolder.txtLocal.setText(atividade.local);
         viewHolder.txtHorario.setText(atividade.getHorarioString());
