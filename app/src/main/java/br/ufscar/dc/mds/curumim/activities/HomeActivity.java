@@ -34,6 +34,7 @@ import br.ufscar.dc.mds.curumim.activities.homeFragments.CalendarioFragment;
 import br.ufscar.dc.mds.curumim.activities.homeFragments.CriancaFragment;
 import br.ufscar.dc.mds.curumim.activities.homeFragments.InitialFragment;
 import br.ufscar.dc.mds.curumim.activities.homeFragments.RegistroFragment;
+import br.ufscar.dc.mds.curumim.utils.TipOfTheDay;
 import br.ufscar.dc.mds.curumim.utils.Authentication;
 import br.ufscar.dc.mds.curumim.utils.DatabaseHandler;
 
