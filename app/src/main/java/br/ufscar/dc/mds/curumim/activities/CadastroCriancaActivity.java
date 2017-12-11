@@ -9,7 +9,12 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
 import br.ufscar.dc.mds.curumim.R;
+import br.ufscar.dc.mds.curumim.entities.Crianca;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -82,6 +87,20 @@ public class CadastroCriancaActivity extends AppCompatActivity {
             return;
         }
 
-        //método de cadastrar crianças
+    }
+
+    public void realizaCadastroBD()
+    {
+        DatabaseReference databaseRef = FirebaseDatabase.getInstance().getReference("users/" + FirebaseAuth.getInstance().getUid() + "/criancas");
+        Crianca c = new Crianca();
+
+        c.setNome(nomeCrianca.getText().toString());
+        c.setIdade(idadeCrianca.getText().toString());
+        c.setSexo(spinnerSexoCrianca.getSelectedItem().toString());
+        c.setTipoSanguineo(spinnerTipoSanguineoCrianca.getSelectedItem().toString());
+        c.setAlergias(alergiaCrianca.getText().toString());
+
+        databaseRef.setValue(c);
+
     }
 }

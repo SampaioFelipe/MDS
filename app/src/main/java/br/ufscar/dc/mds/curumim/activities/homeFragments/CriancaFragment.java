@@ -1,6 +1,7 @@
 package br.ufscar.dc.mds.curumim.activities.homeFragments;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
@@ -9,16 +10,28 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.GenericTypeIndicator;
+import com.google.firebase.database.ValueEventListener;
+
 import java.util.ArrayList;
 
 import br.ufscar.dc.mds.curumim.R;
+import br.ufscar.dc.mds.curumim.activities.CadastroCriancaActivity;
+import br.ufscar.dc.mds.curumim.entities.Atividade;
 import br.ufscar.dc.mds.curumim.entities.Crianca;
+import butterknife.OnClick;
 
 
 public class CriancaFragment extends Fragment {
 
     private OnListFragmentInteractionListener mListener;
-
+    DatabaseReference databaseRef = FirebaseDatabase.getInstance().getReference("users/" +FirebaseAuth.getInstance().getUid() + "/criancas");
+    ArrayList<Crianca> criancas = new ArrayList<>();
     /**
      * Mandatory empty constructor for the fragment manager to instantiate the
      * fragment (e.g. upon screen orientation changes).
@@ -49,18 +62,32 @@ public class CriancaFragment extends Fragment {
             RecyclerView recyclerView = (RecyclerView) view;
             recyclerView.setLayoutManager(new LinearLayoutManager(context));
 
-            // Geração de dados fakes
-            ArrayList<Crianca> criancas = new ArrayList<>();
 
-            criancas.add(new Crianca("Felipe"));
-            criancas.add(new Crianca("Júlia"));
-            criancas.add(new Crianca("Marcio"));
-            criancas.add(new Crianca("Pedro"));
-            criancas.add(new Crianca("Sylviane"));
+            databaseRef.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
+                    GenericTypeIndicator<ArrayList<Crianca>> t = new GenericTypeIndicator<ArrayList<Crianca>>(){};
+
+                    criancas = dataSnapshot.getValue(t);
+                    //mostra o array das criança
+                }
+
+                @Override
+                public void onCancelled(DatabaseError databaseError) {
+                    criancas = new ArrayList<>();
+                }
+            });
 
             recyclerView.setAdapter(new CriancaRecyclerViewAdapter(criancas));
         }
         return view;
+    }
+
+    @OnClick(R.id.botaocadastrarcrianca)
+    public void abreCadastroCrianca()
+    {
+        Intent cadastroCrianca = new Intent(getActivity(), CadastroCriancaActivity.class);
+        startActivity(cadastroCrianca);
     }
 
 
