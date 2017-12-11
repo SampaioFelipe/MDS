@@ -141,6 +141,17 @@
                 android:layout_alignRight="@id/textoalergiacrianca"
                 android:inputType="textMultiLine" />
 
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:labelFor="@id/campopatologias"
+                android:text="Patologias e observações" />
+            <EditText
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:id="@+id/campopatologias"
+                android:inputType="textMultiLine"/>
+
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">

@@ -20,6 +20,8 @@ import com.google.firebase.database.GenericTypeIndicator;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 import br.ufscar.dc.mds.curumim.R;
 import br.ufscar.dc.mds.curumim.activities.CadastroAtividadeActivity;
@@ -34,7 +36,7 @@ import butterknife.OnClick;
 public class CriancaFragment extends Fragment {
 
     private OnListFragmentInteractionListener mListener;
-    DatabaseReference databaseRef = FirebaseDatabase.getInstance().getReference("users/" +FirebaseAuth.getInstance().getUid() + "/criancas");
+    DatabaseReference databaseRef = FirebaseDatabase.getInstance().getReference("users/" +FirebaseAuth.getInstance().getUid()/* + "/criancas"*/);
     ArrayList<Crianca> criancas = new ArrayList<>();
     /**
      * Mandatory empty constructor for the fragment manager to instantiate the
@@ -66,29 +68,34 @@ public class CriancaFragment extends Fragment {
         RecyclerView recyclerView = view.findViewById(R.id.list);
         recyclerView.setLayoutManager(new LinearLayoutManager(context));
 
-//        // Geração de dados fakes
-//        ArrayList<Crianca> criancas = new ArrayList<>();
+        //final ArrayList<Crianca> criancas = new ArrayList<>();
 
             databaseRef.addValueEventListener(new ValueEventListener() {
                 @Override
                 public void onDataChange(DataSnapshot dataSnapshot) {
-                    GenericTypeIndicator<ArrayList<Crianca>> t = new GenericTypeIndicator<ArrayList<Crianca>>(){};
-
-                    criancas = dataSnapshot.getValue(t);
-                    //mostra o array das criança
+                    //GenericTypeIndicator<ArrayList<Crianca>> t = new GenericTypeIndicator<ArrayList<Crianca>>();
+                    for(DataSnapshot ds: dataSnapshot.getChildren())
+                    {
+                        if(ds.getKey().equals("criancas")){
+                        Crianca c = new Crianca();
+                        c.setNome((String) ds.child("nome").getValue());
+                        c.setIdade((String)ds.child("idade").getValue());
+                        c.setSexo((String)ds.child("sexo").getValue());
+                        c.setTipoSanguineo((String)ds.child("tipoSanguineo").getValue());
+                        c.setRestricoes((String)ds.child("restricoes").getValue());
+                        c.setAlergias((String)ds.child("alergias").getValue());
+                        c.setPatologias((String)ds.child("patologias").getValue());
+                        criancas.add(c);}
+                        else
+                            break;
+                    }
                 }
 
                 @Override
                 public void onCancelled(DatabaseError databaseError) {
-                    criancas = new ArrayList<>();
+                   ArrayList criancas = new ArrayList<>();
                 }
             });
-
-//        criancas.add(new Crianca("Felipe"));
-//        criancas.add(new Crianca("Júlia"));
-//        criancas.add(new Crianca("Marcio"));
-//        criancas.add(new Crianca("Pedro"));
-//        criancas.add(new Crianca("Sylviane"));
 
         recyclerView.setAdapter(new CriancaRecyclerViewAdapter(criancas));
 

@@ -33,8 +33,14 @@ public class CadastroCriancaActivity extends AppCompatActivity {
     @BindView(R.id.campoidadecrianca)
     EditText idadeCrianca;
 
+    @BindView(R.id.camporestricoescrianca)
+    EditText restricoesCriança;
+
     @BindView(R.id.campoalergiacrianca)
     EditText alergiaCrianca;
+
+    @BindView(R.id.campopatologias)
+    EditText patologiaCrianca;
 
 
     @Override
@@ -71,11 +77,6 @@ public class CadastroCriancaActivity extends AppCompatActivity {
             idadeCrianca.setError("Preencha a data de nascimento da criança");
             return;
         }
-        if(TextUtils.isEmpty(alergiaCrianca.getText().toString()))
-        {
-            alergiaCrianca.setError("Preenchimento obrigatório");
-            return;
-        }
         if(TextUtils.equals(spinnerSexoCrianca.getSelectedItem().toString(),"Selecionar"))
         {
             Toast.makeText(this,"Selecione o sexo da criança", Toast.LENGTH_SHORT);
@@ -86,7 +87,23 @@ public class CadastroCriancaActivity extends AppCompatActivity {
             Toast.makeText(this,"Selecione o tipo sanguíneo da criança",Toast.LENGTH_SHORT);
             return;
         }
+        if(TextUtils.isEmpty(alergiaCrianca.getText().toString()))
+        {
+            alergiaCrianca.setError("Preenchimento obrigatório");
+            return;
+        }
+        if(TextUtils.isEmpty(restricoesCriança.getText().toString()))
+        {
+            restricoesCriança.setError("Preenchimento obrigatório");
+            return;
+        }
+        if(TextUtils.isEmpty(patologiaCrianca.getText().toString()))
+        {
+            patologiaCrianca.setError("Preenchimento obrigatório");
+            return;
+        }
 
+        realizaCadastroBD();
     }
 
     public void realizaCadastroBD()
@@ -98,9 +115,13 @@ public class CadastroCriancaActivity extends AppCompatActivity {
         c.setIdade(idadeCrianca.getText().toString());
         c.setSexo(spinnerSexoCrianca.getSelectedItem().toString());
         c.setTipoSanguineo(spinnerTipoSanguineoCrianca.getSelectedItem().toString());
+        c.setRestricoes(restricoesCriança.getText().toString());
         c.setAlergias(alergiaCrianca.getText().toString());
 
         databaseRef.setValue(c);
 
+        Toast.makeText(this,"Cadastro realizado",Toast.LENGTH_LONG);
+
+        CadastroCriancaActivity.this.finish();
     }
 }

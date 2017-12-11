@@ -6,7 +6,20 @@ public class Crianca {
     String sexo;
     String tipoSanguineo;
     String alergias;
+    String restricoes;
+    String patologias;
 
+    public String getPatologias() {return patologias;}
+
+    public void setPatologias(String patologias) {this.patologias = patologias;}
+
+    public String getRestricoes() {
+        return restricoes;
+    }
+
+    public void setRestricoes(String restricoes) {
+        this.restricoes = restricoes;
+    }
 
     public String getSexo() {return sexo;}
 
