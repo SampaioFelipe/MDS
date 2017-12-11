@@ -27,6 +27,7 @@ import br.ufscar.dc.mds.curumim.activities.CadastroCriancaActivity;
 import br.ufscar.dc.mds.curumim.activities.CadastroCriancaActivity;
 import br.ufscar.dc.mds.curumim.entities.Atividade;
 import br.ufscar.dc.mds.curumim.entities.Crianca;
+import br.ufscar.dc.mds.curumim.utils.CriancaRecyclerViewAdapter;
 import butterknife.OnClick;
 
 
@@ -82,6 +83,7 @@ public class CriancaFragment extends Fragment {
                     criancas = new ArrayList<>();
                 }
             });
+
 //        criancas.add(new Crianca("Felipe"));
 //        criancas.add(new Crianca("Júlia"));
 //        criancas.add(new Crianca("Marcio"));
