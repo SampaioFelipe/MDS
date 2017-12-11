@@ -1,11 +1,13 @@
 package br.ufscar.dc.mds.curumim.activities.homeFragments;
 
+import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -24,7 +26,7 @@ import static android.app.Activity.RESULT_OK;
 public class RegistroFragment extends Fragment {
 
     String[] curumins = {"Nome Samps", "Nome Marcio", "Nome Syl", "Nome Tim", "Nome Ju"};
-    private Button butInserir;
+    private FloatingActionButton butInserir;
     private EditText registro;
     private ImageView imageView;
     private Button btnCamera;
@@ -124,8 +126,7 @@ public class RegistroFragment extends Fragment {
     }
 
     public void mostrarMensagem() {
-        Intent intent = new Intent(getActivity(), InsercaoRegActivity.class);
-        startActivity(intent);
+        AlertDialog dialog;
     }
 
     // TODO: Rename method, update argument and hook method into UI event

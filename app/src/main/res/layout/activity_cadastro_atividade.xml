@@ -83,30 +83,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom" />
-
-        <!--<LinearLayout-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:layout_alignParentStart="true"-->
-            <!--android:layout_below="@id/linearLayoutLocalAtividade">-->
-
-            <!--<ImageButton-->
-                <!--android:id="@+id/imageButtonHorarioAtividade"-->
-                <!--android:layout_width="@dimen/tamanhoBotaoCadastroAtividade"-->
-                <!--android:layout_height="@dimen/tamanhoBotaoCadastroAtividade"-->
-                <!--android:layout_marginStart="12dp"-->
-                <!--app:srcCompat="@android:drawable/ic_lock_idle_alarm" />-->
-
-            <!--<TextClock-->
-                <!--android:id="@+id/textClockHorarioAtividade"-->
-                <!--android:layout_width="wrap_content"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:layout_marginStart="@dimen/fui_wrapper_padding_horiz"-->
-                <!--android:layout_marginTop="@dimen/metadeBotaoCadastroAtividade"-->
-                <!--android:hint="@string/selecione_horario_atividade" />-->
-
-        <!--</LinearLayout>-->
-
     </LinearLayout>
 
 </android.support.design.widget.CoordinatorLayout>

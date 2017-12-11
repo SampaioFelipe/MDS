@@ -1,130 +1,107 @@
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<android.support.design.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_margin="10dp"
     tools:context="br.ufscar.dc.mds.curumim.activities.homeFragments.RegistroFragment">
 
-    <TextView
-        android:id="@+id/txt1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Selecione criança para inserir registro: "
-        android:textColor="@color/colorPrimaryDark"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.052" />
-
-    <AutoCompleteTextView
-        android:id="@+id/optCrianca"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.092" />
-
-    <TextView
-        android:id="@+id/txt2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Insira registro da atividade aqui.
-Conte ao responsável o que aconteceu: "
-        android:textColor="@color/colorPrimaryDark"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.21" />
-
-    <EditText
-        android:id="@+id/txtRegistro"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:inputType="text"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.309" />
-
-    <TextView
-        android:id="@+id/txt3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Envie uma foto ao responsável sobre o ocorrido: "
-        android:textColor="@color/colorPrimaryDark"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.41" />
-
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="325dp"
-        android:layout_height="152dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.508"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.643"/>
-
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.101"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.827"
-        android:gravity="center_horizontal" >
+        android:layout_height="match_parent">
 
-        <Button
-            android:id="@+id/btnCamera"
-            android:layout_width="wrap_content"
-            android:layout_height="55dp"
-            android:backgroundTint="@color/colorPrimary"
-            android:drawableLeft="@drawable/ic_menu_camera"
-            android:text="Câmera"
-            android:drawableTint="@color/colorPrimaryDark" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
-        <Button
-            android:id="@+id/btnGaleria"
-            android:layout_width="wrap_content"
-            android:layout_height="55dp"
-            android:backgroundTint="@color/colorPrimary"
-            android:drawableLeft="@android:drawable/ic_menu_gallery"
-            android:drawableTint="@color/colorPrimaryDark"
-            android:text="Galeria"/>
-    </LinearLayout>
+            <TextView
+                android:layout_margin="10dp"
+                android:id="@+id/txt1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Selecione criança desejada: "
+                android:textColor="@color/colorPrimaryDark" />
+
+            <AutoCompleteTextView
+                android:id="@+id/optCrianca"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:layout_margin="10dp"
+                android:id="@+id/txt2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Conte ao responsável o que aconteceu:"
+                android:textColor="@color/colorPrimaryDark" />
+
+            <EditText
+                android:id="@+id/txtRegistro"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="textMultiLine"
+                android:lines="5"/>
+
+            <TextView
+                android:layout_margin="10dp"
+                android:id="@+id/txt3"
+                android:layout_width="match_parent"
+                android:textAlignment="center"
+                android:layout_height="wrap_content"
+                android:text="Envie uma foto ao responsável: "
+                android:textColor="@color/colorPrimaryDark" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/btnCamera"
+                    android:layout_width="150dp"
+                    android:layout_height="60dp"
+                    android:textColor="#fff"
+                    android:layout_marginEnd="10dp"
+                    android:backgroundTint="@color/colorPrimary"
+                    android:drawableStart="@drawable/ic_camera"
+                    android:text="Câmera"
+                    android:textAlignment="center"/>
+
+                <Button
+                    android:id="@+id/btnGaleria"
+                    android:textColor="#fff"
+                    android:layout_width="150dp"
+                    android:layout_height="60dp"
+                    android:backgroundTint="@color/colorPrimary"
+                    android:drawableStart="@drawable/ic_galeria"
+                    android:text="Galeria" />
+            </LinearLayout>
+
+            <ImageView
+                android:src="@drawable/ic_image_repr"
+                android:background="#aaa"
+                android:layout_margin="40dp"
+                android:id="@+id/imageView"
+                android:layout_width="match_parent"
+                android:layout_height="200dp" />
+        </LinearLayout>
 
 
-    <Button
+    </ScrollView>
+
+
+
+    <android.support.design.widget.FloatingActionButton
         android:id="@+id/btnInserir"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:backgroundTint="@color/colorPrimary"
-        android:drawableLeft="@drawable/fui_done_check_mark"
-        android:drawableTint="@color/colorPrimaryDark"
-        android:text="Inserir"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.902"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.965" />
+        android:layout_gravity="bottom|end"
+        android:layout_margin="20dp"
+        android:clickable="true"
+        android:tint="#fff"
+        android:focusable="true"
+        android:src="@drawable/ic_check"/>
 
-</android.support.constraint.ConstraintLayout>
+</android.support.design.widget.CoordinatorLayout>

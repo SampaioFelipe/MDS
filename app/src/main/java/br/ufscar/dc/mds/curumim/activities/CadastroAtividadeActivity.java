@@ -1,7 +1,6 @@
 package br.ufscar.dc.mds.curumim.activities;
 
 import android.app.Activity;
-import android.app.TimePickerDialog;
 import android.content.Intent;
 import android.support.v4.app.NavUtils;
 import android.support.v7.app.AppCompatActivity;
@@ -13,7 +12,6 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.TextClock;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
@@ -61,8 +59,6 @@ public class CadastroAtividadeActivity extends AppCompatActivity {
                 minuto = i1;
             }
         });
-
-//        final TextClock textClock = findViewById(R.id.textClockHorarioAtividade);
 
         Toolbar toolbar = findViewById(R.id.toolbarCadastroAtividade);
 
