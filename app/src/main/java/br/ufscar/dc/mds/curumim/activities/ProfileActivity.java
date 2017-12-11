@@ -64,7 +64,12 @@ public class ProfileActivity extends AppCompatActivity {
             public void onDataChange(DataSnapshot dataSnapshot) {
                 if (dataSnapshot != null) {
                     HashMap<String, String> infos = (HashMap<String, String>) dataSnapshot.getValue();
-                    nascimento.setText(infos.get("data_nascimento"));
+
+                    if(infos != null){
+                        nascimento.setText(infos.get("data_nascimento"));
+                        tipoSangue.setSelection(Integer.decode(infos.get("tipo_sangue")));
+                        sexo.setSelection(Integer.decode(infos.get("sexo")));
+                    }
                 }
             }
 

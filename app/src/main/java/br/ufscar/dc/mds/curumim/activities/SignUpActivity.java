@@ -1,5 +1,7 @@
 package br.ufscar.dc.mds.curumim.activities;
 
+import android.app.AlertDialog;
+import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.support.annotation.NonNull;
@@ -7,6 +9,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Base64;
 import android.view.View;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
@@ -16,6 +19,7 @@ import com.firebase.ui.auth.AuthUI;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 
+import java.util.Calendar;
 import java.util.HashMap;
 
 import br.ufscar.dc.mds.curumim.R;
@@ -36,13 +40,33 @@ public class SignUpActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up);
 
-        userImage = (ImageView) findViewById(R.id.user_image_signup);
+        userImage = findViewById(R.id.user_image_signup);
         new GetUserImage().execute();
 
         ((TextView) findViewById(R.id.user_name_signup)).setText(Authentication.getUserName());
         ((TextView) findViewById(R.id.user_email_signup)).setText(Authentication.getUserEmail());
 
         nascimento_field = findViewById(R.id.data_nascimento_signup);
+
+        nascimento_field.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(final View view) {
+
+                Calendar calendar = Calendar.getInstance();
+
+
+                DatePickerDialog datePickerDialog = new DatePickerDialog(SignUpActivity.this, new DatePickerDialog.OnDateSetListener() {
+                    @Override
+                    public void onDateSet(DatePicker datePicker, int i, int i1, int i2) {
+                        String value = datePicker.getDayOfMonth() + "/" + (datePicker.getMonth() + 1) + "/" + datePicker.getYear();
+                        nascimento_field.setText(value);
+                    }
+                }, calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH));
+
+                datePickerDialog.show();
+            }
+        });
+
         tipoSanguineo_field = findViewById(R.id.tipo_sanguineo_signup);
         sexo_field = findViewById(R.id.sexo_signup);
 
@@ -52,27 +76,35 @@ public class SignUpActivity extends AppCompatActivity {
             public void onClick(View view) {
                 //TODO: Validar os dados dos campos
                 String dataNascimento = nascimento_field.getText().toString();
-                String sangue = tipoSanguineo_field.getSelectedItem().toString();
-                String sexo = sexo_field.getSelectedItem().toString();
+                int sangue = tipoSanguineo_field.getSelectedItemPosition();
+                int sexo = sexo_field.getSelectedItemPosition();
 
-                HashMap<String, String> dict = new HashMap<>();
+                if (dataNascimento.length() > 0 && sangue > 0 && sexo > 0) {
+                    HashMap<String, String> dict = new HashMap<>();
 
-                dict.put("data_nascimento", dataNascimento);
-                dict.put("tipo_sanguineo", sangue);
-                dict.put("sexo", sexo);
+                    dict.put("data_nascimento", dataNascimento);
+                    dict.put("tipo_sangue", String.valueOf(sangue));
+                    dict.put("sexo", String.valueOf(sexo));
 
-                if(photo != null) {
-                    dict.put("user_photo", Base64.encodeToString(photo, 0));
+                    if (photo != null) {
+                        dict.put("user_photo", Base64.encodeToString(photo, 0));
+                    }
+
+                    // TODO: verificar se os dados foram realmente salvos
+                    DatabaseHandler.getDatabase().getReference().child("users").child(Authentication.getUserUID()).setValue(dict);
+
+                    startActivity(new Intent(SignUpActivity.this, TutorialActivity.class));
+                    finish();
                 }
-
-                // TODO: verificar se os dados foram realmente salvos
-                DatabaseHandler.getDatabase().getReference().child("users").child(Authentication.getUserUID()).setValue(dict);
-
-                startActivity(new Intent(SignUpActivity.this, HomeActivity.class));
-
-                finish();
             }
         });
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+
+        logout();
     }
 
     public void logout() {

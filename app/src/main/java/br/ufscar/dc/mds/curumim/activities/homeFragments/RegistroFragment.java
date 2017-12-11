@@ -53,35 +53,33 @@ public class RegistroFragment extends Fragment {
 
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_registro, container, false);
-        imageView = (ImageView) view.findViewById(R.id.imageView);
+        imageView = view.findViewById(R.id.imageView);
 
 
-        btnCamera = (Button) view.findViewById(R.id.btnCamera);
+        btnCamera =  view.findViewById(R.id.btnCamera);
         btnCamera.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 takePicture();
-                //openGallery();
             }
         });
 
-        Button btnGaleria = (Button) view.findViewById(R.id.btnGaleria);
+        Button btnGaleria = view.findViewById(R.id.btnGaleria);
         btnGaleria.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                takePicture();
                 openGallery();
             }
         });
 
         //AUTOCOMPLETE
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_dropdown_item_1line, curumins);
-        AutoCompleteTextView textView = (AutoCompleteTextView) view.findViewById(R.id.optCrianca);
+        AutoCompleteTextView textView = view.findViewById(R.id.optCrianca);
         textView.setThreshold(3);
         textView.setAdapter(adapter);
 
-        registro = (EditText) view.findViewById(R.id.txtRegistro); // registro inserido
-        butInserir = (Button) view.findViewById(R.id.btnInserir);
+        registro = view.findViewById(R.id.txtRegistro); // registro inserido
+        butInserir = view.findViewById(R.id.btnInserir);
         butInserir.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

@@ -13,6 +13,7 @@ import java.util.ArrayList;
 
 import br.ufscar.dc.mds.curumim.R;
 import br.ufscar.dc.mds.curumim.entities.Crianca;
+import br.ufscar.dc.mds.curumim.utils.CriancaRecyclerViewAdapter;
 
 
 public class CriancaFragment extends Fragment {

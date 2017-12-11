@@ -42,7 +42,7 @@
         </activity>
         <activity
             android:name=".activities.SignUpActivity"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".activities.TutorialActivity"
             android:label="@string/title_activity_tutorial"

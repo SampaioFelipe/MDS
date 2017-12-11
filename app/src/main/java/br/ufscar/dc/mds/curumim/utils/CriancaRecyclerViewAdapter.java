@@ -1,4 +1,4 @@
-package br.ufscar.dc.mds.curumim.activities.homeFragments;
+package br.ufscar.dc.mds.curumim.utils;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
