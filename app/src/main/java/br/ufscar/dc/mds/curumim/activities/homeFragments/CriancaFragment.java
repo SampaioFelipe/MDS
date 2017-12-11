@@ -1,7 +1,9 @@
 package br.ufscar.dc.mds.curumim.activities.homeFragments;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -12,6 +14,8 @@ import android.view.ViewGroup;
 import java.util.ArrayList;
 
 import br.ufscar.dc.mds.curumim.R;
+import br.ufscar.dc.mds.curumim.activities.CadastroAtividadeActivity;
+import br.ufscar.dc.mds.curumim.activities.CadastroCriancaActivity;
 import br.ufscar.dc.mds.curumim.entities.Crianca;
 
 
@@ -41,28 +45,34 @@ public class CriancaFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
         View view = inflater.inflate(R.layout.fragment_crianca_list, container, false);
 
-        // Set the adapter
-        if (view instanceof RecyclerView) {
-            Context context = view.getContext();
-            RecyclerView recyclerView = (RecyclerView) view;
-            recyclerView.setLayoutManager(new LinearLayoutManager(context));
 
-            // Geração de dados fakes
-            ArrayList<Crianca> criancas = new ArrayList<>();
+        Context context = view.getContext();
+        RecyclerView recyclerView = view.findViewById(R.id.list);
+        recyclerView.setLayoutManager(new LinearLayoutManager(context));
 
-            criancas.add(new Crianca("Felipe"));
-            criancas.add(new Crianca("Júlia"));
-            criancas.add(new Crianca("Marcio"));
-            criancas.add(new Crianca("Pedro"));
-            criancas.add(new Crianca("Sylviane"));
+        // Geração de dados fakes
+        ArrayList<Crianca> criancas = new ArrayList<>();
 
-            recyclerView.setAdapter(new CriancaRecyclerViewAdapter(criancas));
-        }
+        criancas.add(new Crianca("Felipe"));
+        criancas.add(new Crianca("Júlia"));
+        criancas.add(new Crianca("Marcio"));
+        criancas.add(new Crianca("Pedro"));
+        criancas.add(new Crianca("Sylviane"));
+
+        recyclerView.setAdapter(new CriancaRecyclerViewAdapter(criancas));
+
+        ((FloatingActionButton) view.findViewById(R.id.botaoAdicionarPerfilCrianca)).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getActivity(), CadastroCriancaActivity.class));
+            }
+        });
+
         return view;
     }
-
 
     @Override
     public void onAttach(Context context) {
