@@ -214,4 +214,8 @@ public class HomeActivity extends AppCompatActivity
         super.onActivityResult(requestCode,resultCode,data);
 
     }
+
+    public void setActionbarTitle(String title) {
+        getSupportActionBar().setTitle(title);
+    }
 }

@@ -30,6 +30,7 @@ import java.util.Date;
 import java.util.Locale;
 import java.util.Objects;
 
+import br.ufscar.dc.mds.curumim.activities.HomeActivity;
 import br.ufscar.dc.mds.curumim.utils.AtividadeAdapter;
 import br.ufscar.dc.mds.curumim.activities.CadastroAtividadeActivity;
 import br.ufscar.dc.mds.curumim.R;
@@ -114,6 +115,13 @@ public class CalendarioFragment extends Fragment {
         });
 
         diaSelecionado = new Date(viewCalendario.getDate());
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+
+        ((HomeActivity) getActivity()).setActionbarTitle("Calendário");
     }
 
     @Override

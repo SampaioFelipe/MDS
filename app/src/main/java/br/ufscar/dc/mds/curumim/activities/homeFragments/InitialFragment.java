@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import br.ufscar.dc.mds.curumim.R;
+import br.ufscar.dc.mds.curumim.activities.HomeActivity;
 import br.ufscar.dc.mds.curumim.utils.TipOfTheDay;
 
 public class InitialFragment extends Fragment {
@@ -69,6 +70,13 @@ public class InitialFragment extends Fragment {
     public void onDetach() {
         super.onDetach();
         mListener = null;
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+
+        ((HomeActivity) getActivity()).setActionbarTitle("Home");
     }
 
     /**

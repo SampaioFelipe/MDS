@@ -1,8 +1,9 @@
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_margin="10dp"
     tools:context="br.ufscar.dc.mds.curumim.activities.homeFragments.RegistroFragment">
 
     <TextView
@@ -10,12 +11,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Selecione criança para inserir registro: "
+        android:textColor="@color/colorPrimaryDark"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.032" />
+        app:layout_constraintVertical_bias="0.052" />
 
     <AutoCompleteTextView
         android:id="@+id/optCrianca"
@@ -34,6 +36,7 @@
         android:layout_height="wrap_content"
         android:text="Insira registro da atividade aqui.
 Conte ao responsável o que aconteceu: "
+        android:textColor="@color/colorPrimaryDark"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -58,6 +61,7 @@ Conte ao responsável o que aconteceu: "
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Envie uma foto ao responsável sobre o ocorrido: "
+        android:textColor="@color/colorPrimaryDark"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -74,37 +78,47 @@ Conte ao responsável o que aconteceu: "
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.643" />
+        app:layout_constraintVertical_bias="0.643"/>
 
-    <Button
-        android:id="@+id/btnCamera"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Câmera"
+        android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintHorizontal_bias="0.101"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.827" />
+        app:layout_constraintVertical_bias="0.827"
+        android:gravity="center_horizontal" >
 
-    <Button
-        android:id="@+id/btnGaleria"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Galeria"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.501"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.827" />
+        <Button
+            android:id="@+id/btnCamera"
+            android:layout_width="wrap_content"
+            android:layout_height="55dp"
+            android:backgroundTint="@color/colorPrimary"
+            android:drawableLeft="@drawable/ic_menu_camera"
+            android:text="Câmera"
+            android:drawableTint="@color/colorPrimaryDark" />
+
+        <Button
+            android:id="@+id/btnGaleria"
+            android:layout_width="wrap_content"
+            android:layout_height="55dp"
+            android:backgroundTint="@color/colorPrimary"
+            android:drawableLeft="@android:drawable/ic_menu_gallery"
+            android:drawableTint="@color/colorPrimaryDark"
+            android:text="Galeria"/>
+    </LinearLayout>
 
 
     <Button
         android:id="@+id/btnInserir"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:backgroundTint="@color/colorPrimary"
+        android:drawableLeft="@drawable/fui_done_check_mark"
+        android:drawableTint="@color/colorPrimaryDark"
         android:text="Inserir"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintHorizontal_bias="0.902"
