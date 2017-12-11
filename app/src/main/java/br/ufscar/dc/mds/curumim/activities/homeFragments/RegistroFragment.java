@@ -4,6 +4,7 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
@@ -32,6 +33,7 @@ public class RegistroFragment extends Fragment {
     private Button btnCamera;
     private static final int PICK_IMAGE = 100;
     private static final int TAKE_IMAGE = 50;
+    private AutoCompleteTextView textView2;
     Uri imageUri;
 
     private OnFragmentInteractionListener mListener;
@@ -76,19 +78,27 @@ public class RegistroFragment extends Fragment {
 
         //AUTOCOMPLETE
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_dropdown_item_1line, curumins);
-        AutoCompleteTextView textView = view.findViewById(R.id.optCrianca);
-        textView.setThreshold(3);
-        textView.setAdapter(adapter);
+        textView2 = view.findViewById(R.id.optCrianca);
+        textView2.setThreshold(3);
+        textView2.setAdapter(adapter);
 
         registro = view.findViewById(R.id.txtRegistro); // registro inserido
+
         butInserir = view.findViewById(R.id.btnInserir);
         butInserir.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 //procura no BD se crianca existe
                 //insere registro no BD
+                //apaga informacoes inseridas
+                registro.setText("");
+                textView2.setText("");
+                //apagar imagem, se houver
+                Drawable teste = getResources().getDrawable(R.drawable.ic_image_repr);
+                imageView.setImageDrawable(teste);
                 //notifica que registro foi inserido com sucesso
                 mostrarMensagem();
+
             }
         });
 
@@ -126,7 +136,11 @@ public class RegistroFragment extends Fragment {
     }
 
     public void mostrarMensagem() {
-        AlertDialog dialog;
+        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+        builder.setTitle("REGISTRO");
+        builder.setMessage("Registro inserido com sucesso");
+        AlertDialog dialog = builder.create();
+        dialog.show();
     }
 
     // TODO: Rename method, update argument and hook method into UI event
