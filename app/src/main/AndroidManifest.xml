@@ -68,7 +68,8 @@
                 android:name="andoird.support.PARENT_ACTIVITY"
                 android:value="br.ufscar.dc.mds.curumim.activities.HomeActivity" />
         </activity>
-        <activity android:name=".activities.InsercaoRegActivity"></activity>
+        <activity android:name=".activities.InsercaoRegActivity" />
+        <activity android:name=".activities.CadastroCriancaActivity"></activity>
     </application>
 
 </manifest>
